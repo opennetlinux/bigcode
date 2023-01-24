@@ -148,6 +148,12 @@ sff_module_types: &sff_module_types
     desc: "100BASE-LX"
 - 100_BASE_FX:
     desc: "100BASE-FX"
+- 100G_BASE_LR:
+    desc: "100GBASE-LR"
+- 100G_BASE_FR:
+    desc: "100GBASE-FR"
+- 100G_BASE_DR:
+    desc: "100GBASE-DR"
 - 4X_MUX:
     desc: "4X-MUX"
 

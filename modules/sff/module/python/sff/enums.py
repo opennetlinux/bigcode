@@ -213,7 +213,10 @@ class SFF_MODULE_TYPE(Enumeration):
     _1G_BASE_T = 49
     _100_BASE_LX = 50
     _100_BASE_FX = 51
-    _4X_MUX = 52
+    _100G_BASE_LR = 52
+    _100G_BASE_FR = 53
+    _100G_BASE_DR = 54
+    _4X_MUX = 55
 
 
 class SFF_SFP_TYPE(Enumeration):
