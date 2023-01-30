@@ -182,9 +182,9 @@ class SFF_MODULE_TYPE(Enumeration):
     _100G_PAM4_BIDI = 18
     _100G_AOC_LBER = 19
     _100G_ACC_LBER = 20
-    _100G_BASE_LR = 21
+    _100G_BASE_DR = 21
     _100G_BASE_FR = 22
-    _100G_BASE_DR = 23
+    _100G_BASE_LR = 23
     _40G_BASE_CR4 = 24
     _40G_BASE_SR4 = 25
     _40G_BASE_LR4 = 26

@@ -183,9 +183,9 @@ typedef enum sff_module_type_e {
     "100G_PAM4_BIDI", \
     "100G_AOC_LBER", \
     "100G_ACC_LBER", \
-    "100G_BASE_LR", \
-    "100G_BASE_FR", \
     "100G_BASE_DR", \
+    "100G_BASE_FR", \
+    "100G_BASE_LR", \
     "40G_BASE_CR4", \
     "40G_BASE_SR4", \
     "40G_BASE_LR4", \

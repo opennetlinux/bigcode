@@ -83,8 +83,8 @@ sff_module_type_get(const uint8_t* eeprom)
 
     if (SFF8636_MODULE_QSFP28(eeprom)
         && SFF8636_MEDIA_EXTENDED(eeprom)
-        && SFF8636_MEDIA_100GE_LR(eeprom))
-        return SFF_MODULE_TYPE_100G_BASE_LR;
+        && SFF8636_MEDIA_100GE_DR(eeprom))
+        return SFF_MODULE_TYPE_100G_BASE_DR;
 
     if (SFF8636_MODULE_QSFP28(eeprom)
         && SFF8636_MEDIA_EXTENDED(eeprom)
@@ -93,8 +93,8 @@ sff_module_type_get(const uint8_t* eeprom)
 
     if (SFF8636_MODULE_QSFP28(eeprom)
         && SFF8636_MEDIA_EXTENDED(eeprom)
-        && SFF8636_MEDIA_100GE_DR(eeprom))
-        return SFF_MODULE_TYPE_100G_BASE_DR;
+        && SFF8636_MEDIA_100GE_LR(eeprom))
+        return SFF_MODULE_TYPE_100G_BASE_LR;
 
     if (SFF8636_MODULE_QSFP28(eeprom)
         && SFF8636_MEDIA_EXTENDED(eeprom)
@@ -348,9 +348,9 @@ sff_media_type_get(sff_module_type_t mt)
         case SFF_MODULE_TYPE_100G_SWDM4:
         case SFF_MODULE_TYPE_100G_PAM4_BIDI:
         case SFF_MODULE_TYPE_100G_AOC_LBER:
-        case SFF_MODULE_TYPE_100G_BASE_LR:
-        case SFF_MODULE_TYPE_100G_BASE_FR:
         case SFF_MODULE_TYPE_100G_BASE_DR:
+        case SFF_MODULE_TYPE_100G_BASE_FR:
+        case SFF_MODULE_TYPE_100G_BASE_LR:
         case SFF_MODULE_TYPE_40G_BASE_SR4:
         case SFF_MODULE_TYPE_40G_BASE_LR4:
         case SFF_MODULE_TYPE_40G_BASE_LM4:
@@ -407,9 +407,9 @@ sff_module_caps_get(sff_module_type_t mt, uint32_t *caps)
         case SFF_MODULE_TYPE_100G_PAM4_BIDI:
         case SFF_MODULE_TYPE_100G_AOC_LBER:
         case SFF_MODULE_TYPE_100G_ACC_LBER:
-        case SFF_MODULE_TYPE_100G_BASE_LR:
-        case SFF_MODULE_TYPE_100G_BASE_FR:
         case SFF_MODULE_TYPE_100G_BASE_DR:
+        case SFF_MODULE_TYPE_100G_BASE_FR:
+        case SFF_MODULE_TYPE_100G_BASE_LR:
             *caps |= SFF_MODULE_CAPS_F_100G;
             return 0;
 
@@ -868,9 +868,9 @@ sff_info_init(sff_info_t* info, sff_module_type_t mt,
         case SFF_MODULE_TYPE_100G_SWDM4:
         case SFF_MODULE_TYPE_100G_PAM4_BIDI:
         case SFF_MODULE_TYPE_100G_AOC_LBER:
-        case SFF_MODULE_TYPE_100G_BASE_LR:
-        case SFF_MODULE_TYPE_100G_BASE_FR:
         case SFF_MODULE_TYPE_100G_BASE_DR:
+        case SFF_MODULE_TYPE_100G_BASE_FR:
+        case SFF_MODULE_TYPE_100G_BASE_LR:
             info->sfp_type = SFF_SFP_TYPE_QSFP28;
             info->media_type = SFF_MEDIA_TYPE_FIBER;
             info->caps = SFF_MODULE_CAPS_F_100G;
