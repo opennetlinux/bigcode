@@ -348,6 +348,9 @@ sff_media_type_get(sff_module_type_t mt)
         case SFF_MODULE_TYPE_100G_SWDM4:
         case SFF_MODULE_TYPE_100G_PAM4_BIDI:
         case SFF_MODULE_TYPE_100G_AOC_LBER:
+        case SFF_MODULE_TYPE_100G_BASE_LR:
+        case SFF_MODULE_TYPE_100G_BASE_FR:
+        case SFF_MODULE_TYPE_100G_BASE_DR:
         case SFF_MODULE_TYPE_40G_BASE_SR4:
         case SFF_MODULE_TYPE_40G_BASE_LR4:
         case SFF_MODULE_TYPE_40G_BASE_LM4:
@@ -372,9 +375,6 @@ sff_media_type_get(sff_module_type_t mt)
         case SFF_MODULE_TYPE_1G_BASE_ZX:
         case SFF_MODULE_TYPE_100_BASE_LX:
         case SFF_MODULE_TYPE_100_BASE_FX:
-        case SFF_MODULE_TYPE_100G_BASE_LR:
-        case SFF_MODULE_TYPE_100G_BASE_FR:
-        case SFF_MODULE_TYPE_100G_BASE_DR:
         case SFF_MODULE_TYPE_4X_MUX:
             return SFF_MEDIA_TYPE_FIBER;
 

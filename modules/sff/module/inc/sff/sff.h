@@ -119,6 +119,9 @@ typedef enum sff_module_type_e {
     SFF_MODULE_TYPE_100G_PAM4_BIDI,
     SFF_MODULE_TYPE_100G_AOC_LBER,
     SFF_MODULE_TYPE_100G_ACC_LBER,
+    SFF_MODULE_TYPE_100G_BASE_LR,
+    SFF_MODULE_TYPE_100G_BASE_FR,
+    SFF_MODULE_TYPE_100G_BASE_DR,
     SFF_MODULE_TYPE_40G_BASE_CR4,
     SFF_MODULE_TYPE_40G_BASE_SR4,
     SFF_MODULE_TYPE_40G_BASE_LR4,
@@ -150,9 +153,6 @@ typedef enum sff_module_type_e {
     SFF_MODULE_TYPE_1G_BASE_T,
     SFF_MODULE_TYPE_100_BASE_LX,
     SFF_MODULE_TYPE_100_BASE_FX,
-    SFF_MODULE_TYPE_100G_BASE_LR,
-    SFF_MODULE_TYPE_100G_BASE_FR,
-    SFF_MODULE_TYPE_100G_BASE_DR,
     SFF_MODULE_TYPE_4X_MUX,
     SFF_MODULE_TYPE_LAST = SFF_MODULE_TYPE_4X_MUX,
     SFF_MODULE_TYPE_COUNT,
@@ -183,6 +183,9 @@ typedef enum sff_module_type_e {
     "100G_PAM4_BIDI", \
     "100G_AOC_LBER", \
     "100G_ACC_LBER", \
+    "100G_BASE_LR", \
+    "100G_BASE_FR", \
+    "100G_BASE_DR", \
     "40G_BASE_CR4", \
     "40G_BASE_SR4", \
     "40G_BASE_LR4", \
@@ -214,9 +217,6 @@ typedef enum sff_module_type_e {
     "1G_BASE_T", \
     "100_BASE_LX", \
     "100_BASE_FX", \
-    "100G_BASE_LR", \
-    "100G_BASE_FR", \
-    "100G_BASE_DR", \
     "4X_MUX", \
 }
 /** Enum names. */
