@@ -647,7 +647,7 @@ sff_eeprom_parse_standard__(sff_eeprom_t* se, uint8_t* eeprom)
         SFF_SNPRINTF(se->info.length_desc, sizeof(se->info.length_desc), "%dm", se->info.length);
     }
     if (rc == 0) {
-        AIM_LOG_ERROR("sff_eeprom_parse(): parse success");
+        AIM_LOG_INFO("sff_eeprom_parse(): parse success");
         se->identified = 1;
     }
 
