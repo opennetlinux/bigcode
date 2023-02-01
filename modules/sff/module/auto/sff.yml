@@ -86,6 +86,12 @@ sff_module_types: &sff_module_types
     desc: "100G-AOC-LBER"
 - 100G_ACC_LBER:
     desc: "100G-ACC-LBER"
+- 100G_BASE_DR:
+    desc: "100GBASE-DR"
+- 100G_BASE_FR:
+    desc: "100GBASE-FR"
+- 100G_BASE_LR:
+    desc: "100GBASE-LR"
 - 40G_BASE_CR4:
     desc: "40GBASE-CR4"
 - 40G_BASE_SR4:
