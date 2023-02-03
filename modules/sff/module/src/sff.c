@@ -486,6 +486,7 @@ make_printable__(char* string, int size)
 static int
 sff_eeprom_parse_standard__(sff_eeprom_t* se, uint8_t* eeprom)
 {
+    int rc = 0;
     if(se == NULL) {
         return -1;
     }
@@ -518,13 +519,14 @@ sff_eeprom_parse_standard__(sff_eeprom_t* se, uint8_t* eeprom)
     }
 
     if (!sff_eeprom_validate(se, 1)) {
-        return -1;
+        AIM_LOG_ERROR("sff_eeprom_parse(): eeprom validate failed");
+        rc |= -1;
     }
 
     se->info.sfp_type = sff_sfp_type_get(se->eeprom);
     if(se->info.sfp_type == SFF_SFP_TYPE_INVALID) {
         AIM_LOG_ERROR("sff_eeprom_parse() failed: invalid sfp type");
-        return -1;
+        rc |= -1;
     }
     se->info.sfp_type_name = sff_sfp_type_desc(se->info.sfp_type);
 
@@ -579,11 +581,13 @@ sff_eeprom_parse_standard__(sff_eeprom_t* se, uint8_t* eeprom)
 
     se->info.module_type = sff_module_type_get(se->eeprom);
     if(se->info.module_type == SFF_MODULE_TYPE_INVALID) {
-        return -1;
+        AIM_LOG_ERROR("sff_eeprom_parse(): module type invalid");
+        rc |= -1;
     }
 
     if(sff_info_init(&se->info, se->info.module_type, NULL, NULL, NULL, 0) < 0) {
-        return -1;
+        AIM_LOG_ERROR("sff_eeprom_parse(): sff info init failed");
+        rc |= -1;
     }
 
     int aoc_length;
@@ -642,9 +646,12 @@ sff_eeprom_parse_standard__(sff_eeprom_t* se, uint8_t* eeprom)
     else {
         SFF_SNPRINTF(se->info.length_desc, sizeof(se->info.length_desc), "%dm", se->info.length);
     }
-    se->identified = 1;
+    if (rc == 0) {
+        AIM_LOG_INFO("sff_eeprom_parse(): parse success");
+        se->identified = 1;
+    }
 
-    return 0;
+    return rc;
 }
 
 int

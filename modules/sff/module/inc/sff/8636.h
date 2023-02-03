@@ -194,6 +194,7 @@
 #define SFF8636_MEDIA_25GE_CR_N(idprom)                  \
   (idprom[192] == SFF8636_CC192_25GE_CR_N)
 
+
 #define SFF8636_RX_PWR_TYPE_MASK            0x08
 #define SFF8636_DOM_GET_RXPWR_TYPE(idprom)               \
         (idprom[220] & SFF8636_RX_PWR_TYPE_MASK)
