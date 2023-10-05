@@ -151,6 +151,8 @@ typedef enum sff_module_type_e {
     SFF_MODULE_TYPE_1G_BASE_ZX,
     SFF_MODULE_TYPE_1G_BASE_CX,
     SFF_MODULE_TYPE_1G_BASE_T,
+    SFF_MODULE_TYPE_1G_BASE_BX10,
+    SFF_MODULE_TYPE_1G_BASE_BX40,
     SFF_MODULE_TYPE_100_BASE_LX,
     SFF_MODULE_TYPE_100_BASE_FX,
     SFF_MODULE_TYPE_4X_MUX,
@@ -215,6 +217,8 @@ typedef enum sff_module_type_e {
     "1G_BASE_ZX", \
     "1G_BASE_CX", \
     "1G_BASE_T", \
+    "1G_BASE_BX10",\
+    "1G_BASE_BX40",\
     "100_BASE_LX", \
     "100_BASE_FX", \
     "4X_MUX", \
