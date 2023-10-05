@@ -144,6 +144,10 @@ sff_module_types: &sff_module_types
     desc: "1GBASE-SX"
 - 1G_BASE_LX:
     desc: "1GBASE-LX"
+- 1G_BASE_BX10:
+    desc: "1GBASE-BX-10"
+- 1G_BASE_BX40:
+    desc: "1GBASE-BX-40"
 - 1G_BASE_ZX:
     desc: "1GBASE-ZX"
 - 1G_BASE_CX:

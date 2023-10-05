@@ -300,6 +300,14 @@ sff_module_type_get(const uint8_t* eeprom)
         && SFF8472_MEDIA_CBE_FX(eeprom))
         return SFF_MODULE_TYPE_100_BASE_FX;
 
+    if (SFF8472_MODULE_SFP(eeprom)
+	&& SSFF8472_MEDIA_CC6_BX10(eeprom))
+	return SFF_MODULE_TYPE_1G_BASE_BX10;
+
+   if (SFF8472_MODULE_SFP(eeprom)
+        && SSFF8472_MEDIA_CC6_BX40(eeprom))
+        return SFF_MODULE_TYPE_1G_BASE_BX40;
+
     /* non-standard (e.g. Finisar) ZR media */
     if (SFF8472_MODULE_SFP(eeprom)
         && _sff8472_media_zr(eeprom))
@@ -373,6 +381,8 @@ sff_media_type_get(sff_module_type_t mt)
         case SFF_MODULE_TYPE_1G_BASE_SX:
         case SFF_MODULE_TYPE_1G_BASE_LX:
         case SFF_MODULE_TYPE_1G_BASE_ZX:
+        case SFF_MODULE_TYPE_1G_BASE_BX10:
+        case SFF_MODULE_TYPE_1G_BASE_BX40:   
         case SFF_MODULE_TYPE_100_BASE_LX:
         case SFF_MODULE_TYPE_100_BASE_FX:
         case SFF_MODULE_TYPE_4X_MUX:
@@ -450,6 +460,8 @@ sff_module_caps_get(sff_module_type_t mt, uint32_t *caps)
         case SFF_MODULE_TYPE_1G_BASE_ZX:
         case SFF_MODULE_TYPE_1G_BASE_CX:
         case SFF_MODULE_TYPE_1G_BASE_T:
+        case SFF_MODULE_TYPE_1G_BASE_BX10:
+        case SFF_MODULE_TYPE_1G_BASE_BX40:
             *caps |= SFF_MODULE_CAPS_F_1G;
             return 0;
 
@@ -941,6 +953,8 @@ sff_info_init(sff_info_t* info, sff_module_type_t mt,
         case SFF_MODULE_TYPE_1G_BASE_SX:
         case SFF_MODULE_TYPE_1G_BASE_LX:
         case SFF_MODULE_TYPE_1G_BASE_ZX:
+        case SFF_MODULE_TYPE_1G_BASE_BX10:
+	case SFF_MODULE_TYPE_1G_BASE_BX40:
             info->sfp_type = SFF_SFP_TYPE_SFP;
             info->media_type = SFF_MEDIA_TYPE_FIBER;
             info->caps = SFF_MODULE_CAPS_F_1G;
