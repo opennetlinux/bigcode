@@ -325,6 +325,9 @@ typedef struct sff_info_s {
     /** Serial Number */
     char serial[17];
 
+    /**Vendor Revision */
+    char vendor_rev[4];
+
     /** SFP Type */
     sff_sfp_type_t sfp_type;
 
