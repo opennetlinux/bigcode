@@ -421,7 +421,7 @@ void sff_info_show(sff_info_t* info, aim_pvs_t* pvs);
  */
 int sff_info_init(sff_info_t* pinfo, sff_module_type_t type,
                   const char* vendor, const char* model, const char* serial,
-                  int length);
+                  const char* vendor_rev, int length);
 
 
 int sff_info_from_module_type(sff_info_t* info, sff_sfp_type_t st,

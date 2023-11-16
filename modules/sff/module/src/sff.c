@@ -540,7 +540,7 @@ sff_eeprom_parse_standard__(sff_eeprom_t* se, uint8_t* eeprom)
     }
     se->info.sfp_type_name = sff_sfp_type_desc(se->info.sfp_type);
 
-    const uint8_t *vendor, *model, *serial;
+    const uint8_t *vendor, *model, *serial, *vendor_rev;
 
     switch(se->info.sfp_type)
         {
@@ -562,6 +562,7 @@ sff_eeprom_parse_standard__(sff_eeprom_t* se, uint8_t* eeprom)
             vendor=se->eeprom+20;
             model=se->eeprom+40;
             serial=se->eeprom+68;
+            vendor_rev=se->eeprom+56;
             break;
         }
 
@@ -588,13 +589,20 @@ sff_eeprom_parse_standard__(sff_eeprom_t* se, uint8_t* eeprom)
     else {
         aim_strlcpy(se->info.serial, empty, 17);
     }
+    if (*vendor_rev) {
+        aim_strlcpy(se->info.vendor_rev, (char*)vendor_rev, sizeof(se->info.vendor_rev));
+        make_printable__(se->info.vendor_rev, sizeof(se->info.vendor_rev));
+    }
+    else {
+        aim_strlcpy(se->info.vendor_rev, empty, 5);
+    }
 
     se->info.module_type = sff_module_type_get(se->eeprom);
     if(se->info.module_type == SFF_MODULE_TYPE_INVALID) {
         return -1;
     }
 
-    if(sff_info_init(&se->info, se->info.module_type, NULL, NULL, NULL, 0) < 0) {
+    if(sff_info_init(&se->info, se->info.module_type, NULL, NULL, NULL, NULL, 0) < 0) {
         return -1;
     }
 
@@ -681,8 +689,8 @@ sff_info_from_module_type(sff_info_t* info, sff_sfp_type_t st, sff_module_type_t
 void
 sff_info_show(sff_info_t* info, aim_pvs_t* pvs)
 {
-    aim_printf(pvs, "Vendor: %s Model: %s SN: %s Type: %s Module: %s Media: %s Length: %d\n",
-               info->vendor, info->model, info->serial, info->sfp_type_name,
+    aim_printf(pvs, "Vendor: %s Model: %s SN: %s Revision: %s Type: %s Module: %s Media: %s Length: %d\n",
+               info->vendor, info->model, info->serial, info->vendor_rev, info->sfp_type_name,
                info->module_type_name, info->media_type_name, info->length);
 }
 
@@ -844,7 +852,7 @@ sff_eeprom_parse(sff_eeprom_t* se, uint8_t* eeprom)
 int
 sff_info_init(sff_info_t* info, sff_module_type_t mt,
               const char* vendor, const char* model, const char* serial,
-              int length)
+              const char* vendor_rev, int length)
 {
     info->module_type = mt;
 
@@ -992,6 +1000,9 @@ sff_info_init(sff_info_t* info, sff_module_type_t mt,
     if(serial) {
         aim_strlcpy(info->serial, serial, sizeof(info->serial));
     }
+    if(vendor_rev) {
+        aim_strlcpy(info->vendor_rev, vendor_rev, sizeof(info->vendor_rev));
+    }
 
     info->length = length;
     SFF_SNPRINTF(info->length_desc, sizeof(info->length_desc), "%dm", length);
@@ -1013,6 +1024,7 @@ sff_info_to_json(sff_info_t* info, cJSON** cjp)
     cjson_util_add_string_to_object(cj, "vendor", "%-16.16s", info->vendor);
     cjson_util_add_string_to_object(cj, "model", "%-16.16s", info->model);
     cjson_util_add_string_to_object(cj, "serial", "%-16.16s", info->serial);
+    cjson_util_add_string_to_object(cj, "serial", "%-4.4s", info->vendor_rev);
     cJSON_AddStringToObject(cj, "sfp-type", info->sfp_type_name);
     cJSON_AddStringToObject(cj, "module-type", info->module_type_name);
     cJSON_AddStringToObject(cj, "media-type", info->media_type_name);
